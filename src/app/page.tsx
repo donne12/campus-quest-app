@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { QrReader } from 'react-qr-reader';
 
 const Home: React.FC = () => {
   const [appLoaded, setAppLoaded] = useState(false);
@@ -43,6 +44,17 @@ const Home: React.FC = () => {
       ) : (
         <div>
           <h1 className="text-4xl">Accueil</h1>
+          <QrReader
+                onResult={(result, error) => {
+                    if (!!result) {
+                        console.log(result);
+                    }
+
+                    if (!!error) {
+                        console.info(error);
+                    }
+                }}
+            />
         </div>
       )}
     </div>
