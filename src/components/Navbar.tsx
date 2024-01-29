@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
       <div className="container flex items-center justify-between">
         <Link href="/">
           <div className="row">
-            <HandMetal />
+            <HandMetal/>
             <Image src="/assets/logo.png" alt="Campus Quest" height={40} width={40} />
           </div>
         </Link>

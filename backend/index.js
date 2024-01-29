@@ -45,6 +45,8 @@ app.use(express.static(staticAssetsDirectory));
  *         description: Erreur serveur
  */
 app.get('/api/getQuests/:id', authenticateJWT, (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const id = req.params.id;
     db.query('SELECT quests.*, users_quests.status FROM quests INNER JOIN users_quests ON quests.id = users_quests.quest_id WHERE users_quests.user_id = ' + id, (err, results) => {
         if (err) {
@@ -70,6 +72,8 @@ app.get('/api/getQuests/:id', authenticateJWT, (req, res) => {
  *         description: Erreur serveur
  */
 app.get('/api/quests/:code', authenticateJWT, (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const code = req.params.code;
     db.query('SELECT * FROM quests WHERE code=?', code, (err, results) => {
         if (err) {
@@ -122,6 +126,8 @@ app.get('/api/quests/:code', authenticateJWT, (req, res) => {
  *         description: Erreur interne du serveur.
  */
 app.post('/api/inscription', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { username, email, password } = req.body; 
     const mot_de_passe = password;
     // Vérifiez que l'utilisateur n'existe pas déjà
@@ -187,6 +193,8 @@ app.post('/api/inscription', (req, res) => {
  *         description: Erreur interne du serveur.
  */
 app.post('/api/connexion', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const { email, password } = req.body;
     const mot_de_passe = password;
     // Recherchez l'utilisateur dans la base de données
@@ -210,7 +218,7 @@ app.post('/api/connexion', (req, res) => {
             }
 
             // Générez un token JWT
-            const token = jwt.sign({ userId: user.id, username: user.username }, 'querreSecretKey', { expiresIn: '10h' });
+            const token = jwt.sign({ userId: user.id, username: user.username }, 'secretKey', { expiresIn: '10h' });
 
             // Retournez le token JWT
             return res.status(200).json({ token });
@@ -220,13 +228,15 @@ app.post('/api/connexion', (req, res) => {
 
 // Middleware d'authentification JWT
 function authenticateJWT(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const token = req.header('Authorization');
 
     if (!token) {
         return res.status(401).json({ error: 'Authentification requise' });
     }
 
-    jwt.verify(token, 'querreSecretKey', (err, user) => {
+    jwt.verify(token, 'secretKey', (err, user) => {
         if (err) {
             return res.status(403).json({ error: 'Accès non autorisé' });
         }

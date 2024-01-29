@@ -1,11 +1,33 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { QrReader } from 'react-qr-reader';
+import QrReader from "react-qr-reader";
+import axios from "axios";
+import { GET_QUEST } from "@/lib/constants";
+import Modal from "react-modal";
+import toast, { Toaster } from "react-hot-toast";
+import { buttonVariants } from "@/components/ui/button";
 
 const Home: React.FC = () => {
   const [appLoaded, setAppLoaded] = useState(false);
+  const [questTitle, setQuestTitle] = useState("");
+  const [questLibelle, setQuestLibelle] = useState("");
+  const [location, setLocation] = useState<string | null>(null);
+  const [address, setAddress] = useState("");
+  const [qrData, setQrData] = useState("Aucun code pour le moment.");
+  const [modalIsOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -13,7 +35,76 @@ const Home: React.FC = () => {
       router.push("/sign-in");
     }
     setAppLoaded(true);
+    handleGetLocation();
+    tryModal();
   }, [router]);
+
+  const handleGetLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation(latitude.toString() + "," + longitude.toString());
+          try {
+            const response = await axios.get(
+              `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDp0YPClQ7N4h2sOzuzChSmMWajpUC0OIo`
+            );
+
+            if (response.data.results.length > 0) {
+              setAddress(response.data.results[0].formatted_address);
+            } else {
+              setAddress("Address not found");
+            }
+          } catch (error) {
+            console.error("Error getting address:", error);
+          }
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by your browser");
+    }
+  };
+
+  const handleScan = (data: string | null) => {
+    if (data) {
+      setQrData(data);
+      console.log(data);
+      var token = localStorage.getItem("token");
+    }
+  };
+
+  const tryModal = async () => {
+    var token = localStorage.getItem("token");
+    const response = await axios.get(GET_QUEST + `EXP001`, {
+      headers: { Authorization: `${token}` },
+    });
+
+    if (response.status === 200) {
+      setQuestTitle(response.data[0].title);
+      setQuestLibelle(response.data[0].libelle);
+      openModal();
+      toast.success("À vous de jouer.");
+    } else {
+      toast.error("Impossible de récupérer cette quête.");
+    }
+  };
+
+  const handleError = (err: any) => {
+    console.log("errr");
+    console.error(err);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    console.log("close");
+    setIsOpen(false);
+  };
 
   return (
     <div>
@@ -43,18 +134,38 @@ const Home: React.FC = () => {
         </div>
       ) : (
         <div>
-          <h1 className="text-4xl">Accueil</h1>
+      
+          <h1 className="text-3xl">Scanner un code QR pour commencer une quête.</h1>
+          <br />
           <QrReader
-                onResult={(result, error) => {
-                    if (!!result) {
-                        console.log(result);
-                    }
+            delay={300}
+            onScan={handleScan}
+            onError={handleError}
+            facingMode="user"
+          />
+          <p>{qrData}</p>
 
-                    if (!!error) {
-                        console.info(error);
-                    }
-                }}
-            />
+          {location && (
+            <div>
+              <h2 className="text-2xl">Votre position:</h2>
+              <p>{address}</p>
+            </div>
+          )}
+
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="None"
+          >
+            <h2>******** {questTitle} ********</h2>
+            <div>{questLibelle}</div>
+            <br />
+            <button className={buttonVariants()} onClick={closeModal}>
+              Fermer
+            </button>
+          </Modal>
+          <Toaster />
         </div>
       )}
     </div>

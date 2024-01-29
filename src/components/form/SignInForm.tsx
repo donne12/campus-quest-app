@@ -43,6 +43,7 @@ const SignInForm = () => {
     try {
       const headers = {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       };
       const response = await axios.post(LOGIN, values, { headers });
       if(response.status === 200){

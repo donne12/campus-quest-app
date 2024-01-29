@@ -1,18 +1,18 @@
-// Configuration options for Next.js
 const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,      
-    compiler: {
-      removeConsole: false
-    },
-  };
+  reactStrictMode: true,
+  swcMinify: true,      
+  compiler: {
+    removeConsole: false
+  },
+};
+
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  reloadOnOnline: true,
+  disable: false,
+  skipWaiting: true,
+  sw: 'sw.js',
+});
   
-  // Configuration object tells the next-pwa plugin 
-  const withPWA = require("next-pwa")({
-    dest: "public", 
-    disable: false, 
-    register: true, 
-    skipWaiting: true, 
-  });
-  
-  module.exports = withPWA(nextConfig);
+module.exports = withPWA(nextConfig);

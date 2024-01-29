@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0', // specify the version of OpenAPI Specification
     info: {
-      title: 'Querre Back-end API',
+      title: 'Campus Quest Back-end API',
       version: '1.0.0',
-      description: 'API pour le projet Querre',
+      description: 'API pour le projet Campus Quest',
     },
   },
   // List of files to be processed

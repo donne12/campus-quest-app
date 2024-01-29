@@ -1,15 +1,9 @@
 import Navbar from '@/components/Navbar';
 import '@/styles/globals.css';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Campus Quest',
-  description: 'PWA de quêtes pour les étudiants.',
-  manifest: "/manifest.json"
-};
 
 export default function RootLayout({
   children,
@@ -19,8 +13,11 @@ export default function RootLayout({
   return (
     
     <html lang='fr'>
+      <head>
+         <title>Campus Quest</title>
+      </head>
       <body className={inter.className}>
-        <main className='h-screen flex flex-col justify-center items-center'>
+        <main className='w-full h-screen flex flex-col justify-center items-center'>
           <Navbar />
           {children}
         </main>

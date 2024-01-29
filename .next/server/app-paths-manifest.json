@@ -1,5 +1,6 @@
 {
   "/page": "app/page.js",
-  "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
   "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js"
 }
