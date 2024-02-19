@@ -31,9 +31,7 @@ export default function manifest(): MetadataRoute.Manifest {
         {
           "src": "assets/mobile.png",
            "sizes": "781x1585",
-           "type": "image/png",
-           "form_factor": "wide",
-           "label": "Application"
+           "type": "image/png"
          }
       ]
   };
