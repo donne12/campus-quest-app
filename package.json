@@ -34,7 +34,7 @@
     "react-hot-toast": "^2.4.1",
     "react-modal": "^3.16.1",
     "react-qr-code": "^2.0.11",
-    "react-qr-reader": "^2.2.0",
+    "react-qr-reader": "github:JodusNodus/react-qr-reader#pull/192/head",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
