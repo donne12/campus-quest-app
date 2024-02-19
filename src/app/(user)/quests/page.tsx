@@ -123,9 +123,7 @@ const QuestsPage = () => {
                   })}
                 </p>
               </div>
-
               <p>{quest.description}</p>
-
               <div className="flex justify-between">
                 {quest.status == "Terminée" && (
                   <span className="status completed">{quest.status}</span>

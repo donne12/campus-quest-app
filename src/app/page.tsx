@@ -133,7 +133,7 @@ const Home: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <div>
+      <div className="container">
         {!appLoaded ? (
           <div>
             <div className="text-center">
@@ -169,7 +169,7 @@ const Home: React.FC = () => {
               delay={300}
               onScan={handleScan}
               onError={handleError}
-              facingMode="user"
+              facingMode="environment"
               ref={qrRef}
             />
             <p>Code scanné: {qrData}</p>
@@ -216,6 +216,12 @@ const Home: React.FC = () => {
               </div>
             )}
             <style jsx>{`
+            .container {
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+            }
+
               .modal {
                 position: fixed;
                 z-index: 1;

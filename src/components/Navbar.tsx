@@ -38,14 +38,13 @@ const Navbar: React.FC = () => {
             />
           </div>
         </Link>
-        <h1>CAMPUS QUEST</h1>
         {token ? (
           <button onClick={logout} className={buttonVariants()}>
-            Se déconnecter
+            Déconnexion
           </button>
         ) : (
           <Link className={buttonVariants()} href="/sign-in">
-            Se connecter
+            Connexion
           </Link>
         )}
       </div>
