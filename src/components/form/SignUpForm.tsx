@@ -58,6 +58,7 @@ const SignUpForm = () => {
       const response = await axios.post(REGISTER, values, { headers });
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem('userId', response.data.userId);
         localStorage.setItem("user", JSON.stringify(values));
         toast.success("Inscription réussie. Bienvenue.");
         //wait 2 seconds before redirecting to home page

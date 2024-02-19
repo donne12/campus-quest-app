@@ -6,4 +6,6 @@ export const LOGIN = API_URL + "/connexion";
 export const REGISTER = API_URL + "/inscription";
 export const LOGOUT = API_URL + "/deconnexion";
 export const GET_QUESTS = API_URL + "/getQuests/";
+export const QUEST_DONE = API_URL + "/questDone";
 export const GET_QUEST = API_URL + "/quests/";
+export const DO_QUEST = API_URL + "/quests";

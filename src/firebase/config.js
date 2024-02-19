@@ -1,13 +1,13 @@
 import { initializeApp, getApps } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB2bE_-VjmYEtqB7EnTJxhSaVIyS88GC1s",
-    authDomain: "vote-app-partiel.firebaseapp.com",
-    databaseURL: "https://vote-app-partiel-default-rtdb.firebaseio.com",
-    projectId: "vote-app-partiel",
-    storageBucket: "vote-app-partiel.appspot.com",
-    messagingSenderId: "297188183026",
-    appId: "1:297188183026:web:3f9d547fb99b6915a4b96b"
+    apiKey: "AIzaSyDPFwbFBfidga_xjTIzjuUTyIbJc6VA15U",
+    authDomain: "campus-quest-9fbef.firebaseapp.com",
+    projectId: "campus-quest-9fbef",
+    storageBucket: "campus-quest-9fbef.appspot.com",
+    messagingSenderId: "794262638488",
+    appId: "1:794262638488:web:412db68af976e138fb25ed",
+    measurementId: "G-BP2CF6QMGT"
 };
 
 // Initialize Firebase

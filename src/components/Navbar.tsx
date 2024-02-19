@@ -22,14 +22,23 @@ const Navbar: React.FC = () => {
 
   return (
     <div className=" bg-zinc-100 py-2 border-b border-s-zinc-200 fixed w-full z-10 top-0">
+      <style jsx>{`
+        .rounded-image {
+          border-radius: 50%; /* Make the image rounded */
+        }
+      `}</style>
       <div className="container flex items-center justify-between">
         <Link href="/">
-          <div className="row">
-            <HandMetal/>
-            <Image src="/assets/logo.png" alt="Campus Quest" height={40} width={40} />
+          <div className="flex justify-center-l">
+            <Image
+              src="/assets/logo.png"
+              alt="Campus Quest"
+              height={70}
+              width={70}
+            />
           </div>
         </Link>
-
+        <h1>CAMPUS QUEST</h1>
         {token ? (
           <button onClick={logout} className={buttonVariants()}>
             Se déconnecter
