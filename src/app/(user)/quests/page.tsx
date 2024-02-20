@@ -59,15 +59,18 @@ const QuestsPage = () => {
     }
   };
 
+  const handleShareViaWhatsApp = (quest: any) => {
+    const message = encodeURIComponent(
+      "Je viens de finir la quête <<" +
+        quest.title +
+        ">> sur l'application Campus Quest. Rejoins-moi pour plus d'aventures sur https://campus-quest-app.vercel.app."
+    );
+    window.open(`https://wa.me/?text=${message}`, "_blank");
+  };
+
   return (
     <div className="container">
       <style jsx>{`
-        .container {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-
         ul {
           list-style: none;
           padding: 0;
@@ -83,7 +86,7 @@ const QuestsPage = () => {
 
         h1 {
           margin-top: 0;
-          font-size: 40px;
+          font-size: 30px;
         }
 
         .status {
@@ -115,9 +118,9 @@ const QuestsPage = () => {
           }) => (
             <li key={quest.id} className="quest-item">
               <div className="flex justify-between">
-                {" "}
+
                 <h2>{quest.title}</h2>
-                <p>
+                <p style={{ textAlign: "right" }}>
                   {format(new Date(quest.created_at), "dd MMMM yyyy HH:mm:ss", {
                     locale: fr,
                   })}
@@ -140,6 +143,15 @@ const QuestsPage = () => {
                     Terminer
                   </button>
                 )}
+
+                <button
+                  onClick={() => {
+                    handleShareViaWhatsApp(quest);
+                  }}
+                  className={buttonVariants()}
+                >
+                  Partager                  
+                </button>
               </div>
             </li>
           )

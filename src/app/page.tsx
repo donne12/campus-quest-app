@@ -4,10 +4,11 @@ import { useRouter } from "next/navigation";
 import QrReader from "react-qr-reader";
 import axios from "axios";
 import { DO_QUEST, GET_QUEST } from "@/lib/constants";
-import Modal from "react-modal";
-import toast, { Toaster } from "react-hot-toast";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeProvider } from "../context/ThemeContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 const Home: React.FC = () => {
   const [appLoaded, setAppLoaded] = useState(false);
@@ -20,17 +21,6 @@ const Home: React.FC = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const qrRef = useRef(null);
-
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -83,9 +73,8 @@ const Home: React.FC = () => {
         setQuestTitle(response.data[0].title);
         setQuestLibelle(response.data[0].libelle);
         openModal();
-        toast.success("À vous de jouer.");
       } else {
-        toast.error("Impossible de récupérer cette quête.");
+        toast("Impossible de récupérer cette quête.");
       }
     }
   };
@@ -104,7 +93,6 @@ const Home: React.FC = () => {
   };
 
   const acceptQuest = async () => {
-    console.log("accept");
     var token = localStorage.getItem("token");
     var userId = localStorage.getItem("userId");
 
@@ -122,11 +110,11 @@ const Home: React.FC = () => {
       { headers }
     );
     if (response.status === 201) {
-      toast.success("Quête acceptée.");
+      toast("Nouvelle quête en cours. Bonne chance !");
     } else if (response.status === 200) {
-      toast.error(response.data.error);
+      // toast.error(response.data.error);
     } else {
-      toast.error("Impossible d'accepter cette quête.");
+      toast("Impossible d'accepter cette quête.");
     }
     closeModal();
   };
@@ -161,10 +149,10 @@ const Home: React.FC = () => {
         ) : (
           <div>
             <br />
-            <h1 className="text-3xl">
+            <h1 className="text-1xl">
               Scanner un code QR pour commencer une quête.
             </h1>
-            <br />
+
             <QrReader
               delay={300}
               onScan={handleScan}
@@ -181,13 +169,21 @@ const Home: React.FC = () => {
               </div>
             )}
             <br />
-            <button
-              onClick={() => router.push("/quests")}
-              className={buttonVariants()}
-            >
-              Voir mes quêtes
-            </button>
-            <br />
+            <div className="flex justify-between">
+              <button
+                onClick={() => router.push("/quests")}
+                className={buttonVariants()}
+              >
+                Voir mes quêtes
+              </button>
+
+              <Link href="/contact">
+                <div className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md inline-block border-2 border-rgb-255-0-0">
+                  Nous contacter
+                </div>
+              </Link>
+            </div>
+
             {modalIsOpen && (
               <div className="modal">
                 <div className="modal-content">
@@ -216,12 +212,6 @@ const Home: React.FC = () => {
               </div>
             )}
             <style jsx>{`
-            .container {
-              max-width: 800px;
-              margin: 0 auto;
-              padding: 20px;
-            }
-
               .modal {
                 position: fixed;
                 z-index: 1;
@@ -249,7 +239,7 @@ const Home: React.FC = () => {
                 cursor: pointer;
               }
             `}</style>
-            <Toaster />
+            <ToastContainer />
           </div>
         )}
       </div>

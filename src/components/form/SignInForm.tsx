@@ -107,7 +107,7 @@ const SignInForm = () => {
       </div>
 
       <p className="text-center text-sm text-gray-600 mt-2">
-        Vous n&apos;avez pas encore de compte?
+        Vous n&apos;avez pas encore de compte? 
         <Link className="text-blue-500 hover:underline" href="/sign-up">
           Créer en un.
         </Link>

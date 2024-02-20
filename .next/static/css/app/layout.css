@@ -420,6 +420,37 @@ video {
  
     --radius: 0.5rem;
   }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+ 
+    --ring: 217.2 32.6% 17.5%;
+  }
   * {
   border-color: hsl(var(--border));
 }
@@ -534,10 +565,10 @@ video {
   padding-right: 2rem;
   padding-left: 2rem;
 }
-@media (min-width: 1400px) {
+@media (min-width: 500px) {
 
   .container {
-    max-width: 1400px;
+    max-width: 500px;
   }
 }
 .sr-only {
@@ -571,11 +602,30 @@ video {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
 .mt-6 {
   margin-top: 1.5rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
 }
 .inline {
   display: inline;
@@ -585,6 +635,12 @@ video {
 }
 .inline-flex {
   display: inline-flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
 }
 .h-10 {
   height: 2.5rem;
@@ -604,14 +660,17 @@ video {
 .w-10 {
   width: 2.5rem;
 }
+.w-28 {
+  width: 7rem;
+}
 .w-8 {
   width: 2rem;
 }
 .w-full {
   width: 100%;
 }
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+.max-w-md {
+  max-width: 28rem;
 }
 @keyframes spin {
 
@@ -624,6 +683,9 @@ video {
 }
 .flex-col {
   flex-direction: column;
+}
+.place-items-center {
+  place-items: center;
 }
 .items-center {
   align-items: center;
@@ -645,17 +707,27 @@ video {
 .rounded {
   border-radius: 0.25rem;
 }
+.rounded-full {
+  border-radius: 9999px;
+}
 .rounded-md {
   border-radius: calc(var(--radius) - 2px);
 }
 .border {
   border-width: 1px;
 }
+.border-2 {
+  border-width: 2px;
+}
 .border-b {
   border-bottom-width: 1px;
 }
 .border-input {
   border-color: hsl(var(--input));
+}
+.border-purple-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(192 132 252 / var(--tw-border-opacity));
 }
 .border-s-zinc-200 {
   --tw-border-opacity: 1;
@@ -664,8 +736,20 @@ video {
 .bg-background {
   background-color: hsl(var(--background));
 }
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
 .bg-destructive {
   background-color: hsl(var(--destructive));
+}
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .bg-primary {
   background-color: hsl(var(--primary));
@@ -687,6 +771,9 @@ video {
 .p-10 {
   padding: 2.5rem;
 }
+.p-4 {
+  padding: 1rem;
+}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -703,6 +790,10 @@ video {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 .text-center {
   text-align: center;
 }
@@ -710,13 +801,16 @@ video {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+.font-bold {
+  font-weight: 700;
 }
 .font-medium {
   font-weight: 500;
@@ -754,8 +848,16 @@ video {
 .text-primary-foreground {
   color: hsl(var(--primary-foreground));
 }
+.text-purple-600 {
+  --tw-text-opacity: 1;
+  color: rgb(147 51 234 / var(--tw-text-opacity));
+}
 .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 .underline-offset-4 {
   text-underline-offset: 4px;
@@ -867,8 +969,23 @@ video {
   background-color: hsl(var(--accent));
 }
  
+.hover\:bg-black:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+ 
+.hover\:bg-blue-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+ 
 .hover\:bg-destructive\/90:hover {
   background-color: hsl(var(--destructive) / 0.9);
+}
+ 
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
  
 .hover\:bg-primary\/90:hover {
@@ -930,9 +1047,14 @@ video {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[5].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src/app/layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+ 
+:is(.dark .dark\:text-purple-600) {
+  --tw-text-opacity: 1;
+  color: rgb(147 51 234 / var(--tw-text-opacity));
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[5].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* cyrillic-ext */
 @font-face {
   font-family: '__Inter_aaf875';

@@ -146,7 +146,7 @@ const SignUpForm = () => {
         Ou
       </div>
       <p className="text-center text-sm text-gray-600 mt-2">
-        Vous avez déjà un compte?
+        Vous avez déjà un compte? 
         <Link className="text-blue-500 hover:underline" href="/sign-in">
           Connectez-vous.
         </Link>

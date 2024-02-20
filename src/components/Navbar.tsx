@@ -37,6 +37,7 @@ const Navbar: React.FC = () => {
               width={70}
             />
           </div>
+
         </Link>
         {token ? (
           <button onClick={logout} className={buttonVariants()}>
